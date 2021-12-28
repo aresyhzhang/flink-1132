@@ -5,6 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>netease-format-base-mgdc</artifactId>
+
+    <parent>
+        <artifactId>flink-formats</artifactId>
+        <groupId>org.apache.flink</groupId>
+        <version>1.13-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
     <dependencies>
 
         <dependency>
@@ -12,6 +20,13 @@
             <artifactId>flink-core</artifactId>
             <version>1.13-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-format-common</artifactId>
+            <version>1.13-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -38,8 +53,21 @@
             <groupId>com.netease.neop</groupId>
             <artifactId>neop-common</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>provided</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-java_2.11</artifactId>
@@ -64,17 +92,53 @@
             <version>1.13-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-sql-connector-kafka_${scala.binary.version}</artifactId>
+            <version>1.13-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
+            <version>1.13-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
 
 
     </dependencies>
 
 
-    <parent>
-        <artifactId>flink-parent</artifactId>
-        <groupId>org.apache.flink</groupId>
-        <version>1.13-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
-    </parent>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

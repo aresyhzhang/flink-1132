@@ -139,7 +139,6 @@ public class MgdcRowDataDeserializationSchema
       return Row.of( new Object[]{
               Long.valueOf( logDateTime.toInstant().getEpochSecond() ), m
               .group( "pre" ), logtime, m
-
               .group( "logtype" ), logDateTime
               .toLocalDateTime().format( DateTimeFormatter.BASIC_ISO_DATE ), m
               .group( "source" )} );

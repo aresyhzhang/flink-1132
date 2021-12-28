@@ -27,7 +27,7 @@ under the License.
 		<groupId>org.apache.flink</groupId>
 		<artifactId>flink-parent</artifactId>
 		<version>1.13-SNAPSHOT</version>
-		<relativePath>..</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<properties>
@@ -50,6 +50,7 @@ under the License.
 		<module>flink-orc-nohive</module>
 		<module>flink-hadoop-bulk</module>
 		<module>flink-avro-glue-schema-registry</module>
+		<module>netease-format-base-mgdc</module>
     <module>flink-format-common</module>
   </modules>
 
